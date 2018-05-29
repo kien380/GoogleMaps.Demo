@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
+using XFGoogleMapSample.Services;
 
 namespace XFGoogleMapSample
 {
@@ -64,8 +65,10 @@ namespace XFGoogleMapSample
             #endregion
         }
 
-        private void ButtonShowArea_OnClicked(object sender, EventArgs e)
+        private async void ButtonShowArea_OnClicked(object sender, EventArgs e)
         {
+            await TestHttp();
+
             if (_polygonArea == null)
             {
                 // Show _polygonArea
@@ -87,6 +90,12 @@ namespace XFGoogleMapSample
                 map.Polygons.Remove(_polygonArea);
                 _polygonArea = null;
             }
+        }
+
+        private async Task TestHttp()
+        {
+            var url = HttpService.Instance.ApiTest();
+            var result = await HttpService.Instance.GetAsync(url);
         }
     }
 }
