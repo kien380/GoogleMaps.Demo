@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace XFGoogleMapSample.Services
         private HttpClient _client;
 
         // Test host
-        private const string _host = "http://svoucher.azurewebsites.net/";
+        private const string _host = "http://baonvdemo.azurewebsites.net/";
 
         #endregion
 
@@ -92,6 +93,21 @@ namespace XFGoogleMapSample.Services
         #region API URL
 
         public string ApiTest()
+        {
+            return $"{_host}Merchant/getlistmerchant";
+        }
+
+        public string GetDanhSachDuong()
+        {
+            return $"{_host}street";
+        }
+
+        public string GetDuong(string msDuong)
+        {
+            return $"{_host}street/{msDuong}";
+        }
+
+        public string GetDanhSachQuan()
         {
             return $"{_host}Merchant/getlistmerchant";
         }

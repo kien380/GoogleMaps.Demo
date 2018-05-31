@@ -34,4 +34,19 @@
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.0.0-beta2" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="DanhSachDuong.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DanhSachQuan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XemDuong.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="XemQuan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  
 </Project>

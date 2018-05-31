@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFGoogleMapSample.DanhSachDuong"
+             Title="Danh sách đường">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Đang tải . . . "
+                   x:Name="LabelDangTai"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
+            <ListView x:Name="ListViewDuong"
+                      ItemTapped="ListViewDuong_OnItemTapped"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding StreetName}"
+                                   Margin="20,15"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

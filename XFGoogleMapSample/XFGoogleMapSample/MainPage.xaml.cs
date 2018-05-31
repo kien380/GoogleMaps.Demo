@@ -8,6 +8,7 @@ namespace XFGoogleMapSample
         {
             InitializeComponent();
 
+            /*
             buttonBasicMap.Clicked += (_, e) => Navigation.PushAsync(new BasicMapPage());
             buttonCamera.Clicked += (_, e) => Navigation.PushAsync(new CameraPage());
             buttonPins.Clicked += (_, e) => Navigation.PushAsync(new PinsPage());
@@ -19,6 +20,10 @@ namespace XFGoogleMapSample
             buttonBindingPin.Clicked += (_, e) => Navigation.PushAsync(new BindingPinViewPage());
             buttonGroundOverlays.Clicked += (_, e) => Navigation.PushAsync(new GroundOverlaysPage());
             buttonMapStyles.Clicked += (_, e) => Navigation.PushAsync(new MapStylePage());
+            */
+
+            ButtonXemQuan.Clicked += (s, e) => Navigation.PushAsync(new DanhSachQuan());
+            ButtonXemDuong.Clicked += (s, e) => Navigation.PushAsync(new DanhSachDuong());
         }
     }
 }

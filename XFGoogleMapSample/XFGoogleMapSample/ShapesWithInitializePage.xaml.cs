@@ -67,7 +67,7 @@ namespace XFGoogleMapSample
 
         private async void ButtonShowArea_OnClicked(object sender, EventArgs e)
         {
-            await TestHttp();
+            //await TestHttp();
 
             if (_polygonArea == null)
             {
