@@ -10,7 +10,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="ButtonXemDuongGiaoNhau"
-                        Text="Show area"
+                        Text="Các đường giao nhau"
                         Clicked="ButtonXemDuongGiaoNhau_OnClicked"
                         VerticalOptions="Center"
                         IsVisible="False"/>

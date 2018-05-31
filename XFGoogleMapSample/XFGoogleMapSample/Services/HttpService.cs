@@ -112,6 +112,11 @@ namespace XFGoogleMapSample.Services
             return $"{_host}Merchant/getlistmerchant";
         }
 
+        public string GetDuongGiaoNhau(string msDuong)
+        {
+            return $"{_host}duonggiaonhau/{msDuong}";
+        }
+
         #endregion
     }
 }

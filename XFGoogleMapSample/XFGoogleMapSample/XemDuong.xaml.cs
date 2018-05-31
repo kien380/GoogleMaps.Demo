@@ -25,7 +25,9 @@ namespace XFGoogleMapSample
 	        InitializeComponent();
 
 	        _duong = duong;
+
 	        Title = _duong.StreetName;
+	        ButtonXemDuongGiaoNhau.Text = "Các đường giao với " + duong.StreetName;
 
 	        Task.Run(async () =>
 	        {
@@ -50,14 +52,13 @@ namespace XFGoogleMapSample
 
 	            if (result != null)
 	            {
-	                Duong.DeserializeList(result);
 	                Device.BeginInvokeOnMainThread(() =>
 	                {
 	                    LabelDangTai.IsVisible = false;
 	                    ButtonXemDuongGiaoNhau.IsVisible = true;
 	                    _listDiem = Diem.DeserializeList(result);
 
-                        ShowDuong();
+                        VeDuong();
 	                });
 	            }
 	            else
@@ -80,7 +81,7 @@ namespace XFGoogleMapSample
 	        }
 	    }
 
-	    private void ShowDuong()
+	    private void VeDuong()
 	    {
 	        _polyline = new Polyline();
 
@@ -104,6 +105,46 @@ namespace XFGoogleMapSample
 	    private void ButtonXemDuongGiaoNhau_OnClicked(object sender, EventArgs e)
 	    {
 
-	    }
+	        LabelDangTai.Text = "Đang tải . . .";
+	        LabelDangTai.IsVisible = true;
+	        ButtonXemDuongGiaoNhau.IsVisible = false;
+
+	        Task.Run(async () =>
+	        {
+	            try
+	            {
+	                var url = HttpService.Instance.GetDuongGiaoNhau(_duong.StreetId);
+	                var result = await HttpService.Instance.GetAsync(url);
+
+	                if (result != null)
+	                {
+	                    var listDuong = Duong.DeserializeList(result);
+	                    Device.BeginInvokeOnMainThread(async () =>
+	                    {
+	                        await Navigation.PushAsync(new DanhSachDuong(listDuong));
+	                        LabelDangTai.IsVisible = false;
+	                        ButtonXemDuongGiaoNhau.IsVisible = true;
+                        });
+	                }
+	                else
+	                {
+	                    Device.BeginInvokeOnMainThread(() =>
+	                    {
+	                        LabelDangTai.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                        ButtonXemDuongGiaoNhau.IsVisible = false;
+	                    });
+	                }
+	            }
+	            catch (Exception ex)
+	            {
+	                Debug.WriteLine(ex);
+	                Device.BeginInvokeOnMainThread(() =>
+	                {
+	                    LabelDangTai.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                    ButtonXemDuongGiaoNhau.IsVisible = false;
+	                });
+	            }
+            });
+        }
 	}
 }
