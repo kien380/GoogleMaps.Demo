@@ -5,11 +5,21 @@
              x:Class="XFGoogleMapSample.XemDuong">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <Button x:Name="ButtonShowArea"
+            <Grid HeightRequest="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="ButtonXemDuongGiaoNhau"
                         Text="Show area"
-                        Clicked="ButtonShowArea_OnClicked"/>
-            </StackLayout>
+                        Clicked="ButtonXemDuongGiaoNhau_OnClicked"
+                        VerticalOptions="Center"
+                        IsVisible="False"/>
+
+                <Label Text="Đang tải . . . "
+                       x:Name="LabelDangTai"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+            </Grid>
 
             <googleMaps:Map x:Name="map" 
                       VerticalOptions="FillAndExpand"/>

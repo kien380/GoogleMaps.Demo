@@ -102,7 +102,7 @@ namespace XFGoogleMapSample.Services
             return $"{_host}street";
         }
 
-        public string GetDuong(string msDuong)
+        public string GetToaDoDuong(string msDuong)
         {
             return $"{_host}street/{msDuong}";
         }
