@@ -19,6 +19,7 @@ namespace XFGoogleMapSample
 	    private Polyline _polyline;
 	    private readonly Duong _duong;
 	    private List<Diem> _listDiem;
+	    private List<Duong> _listDuongGiaoNhau;
 
 	    public XemDuong(Duong duong)
 	    {
@@ -31,15 +32,9 @@ namespace XFGoogleMapSample
 
 	        Task.Run(async () =>
 	        {
+	            await GetDuongGiaoNhau();
 	            await GetToaDoDuong();
-
 	        });
-        }
-
-	    private void ButtonShowArea_OnClicked(object sender, EventArgs e)
-	    {
-
-	        
         }
 
 
@@ -102,49 +97,48 @@ namespace XFGoogleMapSample
                 false);
         }
 
-	    private void ButtonXemDuongGiaoNhau_OnClicked(object sender, EventArgs e)
+	    private async Task GetDuongGiaoNhau()
 	    {
-
-	        LabelDangTai.Text = "Đang tải . . .";
-	        LabelDangTai.IsVisible = true;
-	        ButtonXemDuongGiaoNhau.IsVisible = false;
-
-	        Task.Run(async () =>
+	        try
 	        {
-	            try
-	            {
-	                var url = HttpService.Instance.GetDuongGiaoNhau(_duong.StreetId);
-	                var result = await HttpService.Instance.GetAsync(url);
+	            var url = HttpService.Instance.GetDuongGiaoNhau(_duong.StreetId);
+	            var result = await HttpService.Instance.GetAsync(url);
 
-	                if (result != null)
-	                {
-	                    var listDuong = Duong.DeserializeList(result);
-	                    Device.BeginInvokeOnMainThread(async () =>
-	                    {
-	                        await Navigation.PushAsync(new DanhSachDuong(listDuong));
-	                        LabelDangTai.IsVisible = false;
-	                        ButtonXemDuongGiaoNhau.IsVisible = true;
-                        });
-	                }
-	                else
-	                {
-	                    Device.BeginInvokeOnMainThread(() =>
-	                    {
-	                        LabelDangTai.Text = "Quá trình tải bị lỗi, xin thử lại";
-	                        ButtonXemDuongGiaoNhau.IsVisible = false;
-	                    });
-	                }
-	            }
-	            catch (Exception ex)
+	            if (result != null)
 	            {
-	                Debug.WriteLine(ex);
+	                _listDuongGiaoNhau = Duong.DeserializeList(result);
+	            }
+	            else
+	            {
 	                Device.BeginInvokeOnMainThread(() =>
 	                {
 	                    LabelDangTai.Text = "Quá trình tải bị lỗi, xin thử lại";
 	                    ButtonXemDuongGiaoNhau.IsVisible = false;
 	                });
 	            }
-            });
+	        }
+	        catch (Exception ex)
+	        {
+	            Debug.WriteLine(ex);
+	            Device.BeginInvokeOnMainThread(() =>
+	            {
+	                LabelDangTai.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                ButtonXemDuongGiaoNhau.IsVisible = false;
+	            });
+	        }
+        }
+
+	    private async void ButtonXemDuongGiaoNhau_OnClicked(object sender, EventArgs e)
+	    {
+
+	        LabelDangTai.Text = "Đang tải . . .";
+	        LabelDangTai.IsVisible = true;
+	        ButtonXemDuongGiaoNhau.IsVisible = false;
+
+
+	        await Navigation.PushAsync(new DanhSachDuong(_listDuongGiaoNhau));
+	        LabelDangTai.IsVisible = false;
+	        ButtonXemDuongGiaoNhau.IsVisible = true;
         }
 	}
 }

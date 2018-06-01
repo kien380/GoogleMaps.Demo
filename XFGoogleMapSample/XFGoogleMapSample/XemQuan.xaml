@@ -5,14 +5,25 @@
              x:Class="XFGoogleMapSample.XemQuan">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <Button x:Name="ButtonShowArea"
-                        Text="Show area"
-                        Clicked="ButtonShowArea_OnClicked"/>
-            </StackLayout>
+            <Grid HeightRequest="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="ButtonXemDuongGiaoNhau"
+                        Text="Các đường giao nhau"
+                        VerticalOptions="Center"
+                        IsVisible="False"/>
+
+                <Label Text="Đang tải . . . "
+                       x:Name="LabelDangTai"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+            </Grid>
 
             <googleMaps:Map x:Name="map" 
-                      VerticalOptions="FillAndExpand"/>
+                            VerticalOptions="FillAndExpand"/>
+            
+            <StackLayout></StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
