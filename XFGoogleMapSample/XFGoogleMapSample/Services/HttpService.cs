@@ -122,6 +122,11 @@ namespace XFGoogleMapSample.Services
             return $"{_host}street/quan/{msQuan}/{msDuong}";
         }
 
+        public string GetDuongDiQuaQuan(string msDuong)
+        {
+            return $"{_host}street/district/{msDuong}";
+        }
+
         #endregion
     }
 }

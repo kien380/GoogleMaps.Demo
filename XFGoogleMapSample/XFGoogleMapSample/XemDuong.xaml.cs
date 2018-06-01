@@ -180,7 +180,7 @@ namespace XFGoogleMapSample
 	        LabelDuongGiaoNhau.Text = $"Đường {_duong.StreetName} không giao với đường {e.NewTextValue}";
         }
 
-	    private void Button_OnClicked(object sender, EventArgs e)
+	    private void ButtonCheckQuan_OnClicked(object sender, EventArgs e)
 	    {
 	        LabelQuanDiQua.Text = "Đang tải . . .";
 
@@ -226,6 +226,53 @@ namespace XFGoogleMapSample
 	                });
 	            }
             });
+        }
+
+	    private void ButtonDSQuanGiaoNhau_OnClicked(object sender, EventArgs e)
+	    {
+	        LabelDuongGiaoNhau.Text = "Đang tải . . .";
+
+
+            Task.Run(async () =>
+	        {
+	            try
+	            {
+	                var url = HttpService.Instance.GetDuongDiQuaQuan(_duong.StreetId);
+	                var result = await HttpService.Instance.GetAsync(url);
+
+	                if (result != null)
+	                {
+	                    Device.BeginInvokeOnMainThread(async () =>
+	                    {
+	                        var listQuan = Quan.DeserializeList(result);
+                            var listTenQuan = new List<string>();
+
+	                        foreach (var quan in listQuan)
+	                        {
+	                            listTenQuan.Add(quan.DistrictName);
+	                        }
+
+	                        await DisplayActionSheet("Danh sách quận đi qua:", "Cancel", "OK", listTenQuan.ToArray());
+                            LabelDuongGiaoNhau.Text = "";
+	                    });
+                    }
+	                else
+	                {
+	                    Device.BeginInvokeOnMainThread(() =>
+	                    {
+	                        LabelDuongGiaoNhau.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                    });
+	                }
+	            }
+	            catch (Exception ex)
+	            {
+	                Debug.WriteLine(ex);
+	                Device.BeginInvokeOnMainThread(() =>
+	                {
+	                    LabelDuongGiaoNhau.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                });
+	            }
+	        });
         }
 	}
 }

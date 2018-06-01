@@ -34,9 +34,10 @@
                     <Entry x:Name="EntryDuongGiaoNhau"
                            FontSize="12"
                            Placeholder="Nhập tên đường"
-                           TextChanged="EntryDuongGiaoNhau_OnTextChanged" />
+                           TextChanged="EntryDuongGiaoNhau_OnTextChanged" 
+                           HorizontalOptions="FillAndExpand"/>
                     <Button Text="Click"
-                            Clicked="Button_OnClicked" />
+                            Clicked="ButtonDSQuanGiaoNhau_OnClicked" />
                 </StackLayout>
                 <Label x:Name="LabelDuongGiaoNhau"
                        FontSize="11" />
@@ -44,10 +45,10 @@
                 <StackLayout Orientation="Horizontal">
                     <Entry x:Name="EntryQuanDiQua"
                            FontSize="12"
-                           Placeholder="Nhập tên đường"
+                           Placeholder="Nhập mã số quận"
                            HorizontalOptions="FillAndExpand"/>
                     <Button Text="Click"
-                            Clicked="Button_OnClicked"/>
+                            Clicked="ButtonCheckQuan_OnClicked"/>
                 </StackLayout>
                 <Label x:Name="LabelQuanDiQua"
                        FontSize="11"/>
