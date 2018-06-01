@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="XFGoogleMapSample.XemDuong">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid HeightRequest="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="ButtonXemDuongGiaoNhau"
+                        Text="Các đường giao nhau"
+                        Clicked="ButtonXemDuongGiaoNhau_OnClicked"
+                        VerticalOptions="Center"
+                        IsVisible="False"/>
+
+                <Label Text="Đang tải . . . "
+                       x:Name="LabelDangTai"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+            </Grid>
+
+            <googleMaps:Map x:Name="map" 
+                      VerticalOptions="FillAndExpand"/>
+
+            <StackLayout Spacing="0"
+                         Padding="15,0,15,10">
+                <Label Text="Chiều dài con đường"
+                       FontSize="11"
+                       x:Name="LabelChieuDaiDuong" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="EntryDuongGiaoNhau"
+                           FontSize="12"
+                           Placeholder="Nhập tên đường"
+                           TextChanged="EntryDuongGiaoNhau_OnTextChanged" 
+                           HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Click"
+                            Clicked="ButtonDSQuanGiaoNhau_OnClicked" />
+                </StackLayout>
+                <Label x:Name="LabelDuongGiaoNhau"
+                       FontSize="11" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="EntryQuanDiQua"
+                           FontSize="12"
+                           Placeholder="Nhập mã số quận"
+                           HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Click"
+                            Clicked="ButtonCheckQuan_OnClicked"/>
+                </StackLayout>
+                <Label x:Name="LabelQuanDiQua"
+                       FontSize="11"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
