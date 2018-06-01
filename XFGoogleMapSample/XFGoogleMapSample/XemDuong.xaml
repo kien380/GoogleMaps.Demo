@@ -25,22 +25,30 @@
                       VerticalOptions="FillAndExpand"/>
 
             <StackLayout Spacing="0"
-                         Padding="15,0">
+                         Padding="15,0,15,10">
                 <Label Text="Chiều dài con đường"
                        FontSize="11"
-                       x:Name="LabelChieuDaiDuong"/>
-                
-                <Entry x:Name="EntryDuongGiaoNhau"
-                       FontSize="12"
-                       Placeholder="Nhập tên đường"
-                       TextChanged="EntryDuongGiaoNhau_OnTextChanged"/>
-                <Label x:Name="LabelDuongGiaoNhau"
-                       FontSize="11"/>
+                       x:Name="LabelChieuDaiDuong" />
 
-                <Entry x:Name="EntryQuanDiQua"
-                       FontSize="12"
-                       Placeholder="Nhập tên đường"
-                       TextChanged="EntryQuanDiQua_OnTextChanged"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="EntryDuongGiaoNhau"
+                           FontSize="12"
+                           Placeholder="Nhập tên đường"
+                           TextChanged="EntryDuongGiaoNhau_OnTextChanged" />
+                    <Button Text="Click"
+                            Clicked="Button_OnClicked" />
+                </StackLayout>
+                <Label x:Name="LabelDuongGiaoNhau"
+                       FontSize="11" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="EntryQuanDiQua"
+                           FontSize="12"
+                           Placeholder="Nhập tên đường"
+                           HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Click"
+                            Clicked="Button_OnClicked"/>
+                </StackLayout>
                 <Label x:Name="LabelQuanDiQua"
                        FontSize="11"/>
             </StackLayout>

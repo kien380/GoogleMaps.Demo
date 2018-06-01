@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -182,9 +180,52 @@ namespace XFGoogleMapSample
 	        LabelDuongGiaoNhau.Text = $"Đường {_duong.StreetName} không giao với đường {e.NewTextValue}";
         }
 
-	    private void EntryQuanDiQua_OnTextChanged(object sender, TextChangedEventArgs e)
+	    private void Button_OnClicked(object sender, EventArgs e)
 	    {
+	        LabelQuanDiQua.Text = "Đang tải . . .";
 
-	    }
+
+            Task.Run(async () =>
+	        {
+	            try
+	            {
+	                var url = HttpService.Instance.GetDuongNamTrongQuan(EntryQuanDiQua.Text.ToUpper().Trim(), _duong.StreetId);
+	                var result = await HttpService.Instance.GetAsync(url);
+
+	                if (result != null)
+	                {
+	                    if (result.ToLower().Contains("true"))
+	                    {
+	                        Device.BeginInvokeOnMainThread(() =>
+	                        {
+	                            LabelQuanDiQua.Text = $"Đường {_duong.StreetName} nằm trong {EntryQuanDiQua.Text.ToUpper()}";
+	                        });
+                        }
+	                    else
+	                    {
+	                        Device.BeginInvokeOnMainThread(() =>
+	                        {
+	                            LabelQuanDiQua.Text = $"Đường {_duong.StreetName} không nằm trong {EntryQuanDiQua.Text.ToUpper()}";
+	                        });
+                        }
+	                }
+	                else
+	                {
+	                    Device.BeginInvokeOnMainThread(() =>
+	                    {
+	                        LabelQuanDiQua.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                    });
+	                }
+	            }
+	            catch (Exception ex)
+	            {
+	                Debug.WriteLine(ex);
+	                Device.BeginInvokeOnMainThread(() =>
+	                {
+	                    LabelQuanDiQua.Text = "Quá trình tải bị lỗi, xin thử lại";
+	                });
+	            }
+            });
+        }
 	}
 }

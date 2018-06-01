@@ -117,6 +117,11 @@ namespace XFGoogleMapSample.Services
             return $"{_host}duonggiaonhau/{msDuong}";
         }
 
+        public string GetDuongNamTrongQuan(string msQuan, string msDuong)
+        {
+            return $"{_host}street/quan/{msQuan}/{msDuong}";
+        }
+
         #endregion
     }
 }
