@@ -140,5 +140,32 @@ namespace XFGoogleMapSample
 	        LabelDangTai.IsVisible = false;
 	        ButtonXemDuongGiaoNhau.IsVisible = true;
         }
+
+	    private void EntryDuongGiaoNhau_OnTextChanged(object sender, TextChangedEventArgs e)
+	    {
+	        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+	        {
+	            LabelDuongGiaoNhau.Text = "";
+	            return;
+            }
+
+	        string text = e.NewTextValue.RemoveUnicodeCharacter().ToLower().Trim();
+	        foreach (var duongGiaoNhau in _listDuongGiaoNhau)
+	        {
+	            if (text == duongGiaoNhau.StreetName.RemoveUnicodeCharacter().ToLower())
+	            {
+	                LabelDuongGiaoNhau.Text = $"Đường {_duong.StreetName} có giao với đường {e.NewTextValue}";
+                    return;
+	            }
+	        }
+
+
+	        LabelDuongGiaoNhau.Text = $"Đường {_duong.StreetName} không giao với đường {e.NewTextValue}";
+        }
+
+	    private void EntryQuanDiQua_OnTextChanged(object sender, TextChangedEventArgs e)
+	    {
+
+	    }
 	}
 }

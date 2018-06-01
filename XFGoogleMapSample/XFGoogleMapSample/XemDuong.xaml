@@ -23,6 +23,26 @@
 
             <googleMaps:Map x:Name="map" 
                       VerticalOptions="FillAndExpand"/>
+            
+            <StackLayout Spacing="0">
+                <Label Text="Chiều dài con đường"
+                       FontSize="11"
+                       x:Name="LabelChieuDaiDuong"/>
+                
+                <Entry x:Name="EntryDuongGiaoNhau"
+                       FontSize="12"
+                       Placeholder="Nhập tên đường"
+                       TextChanged="EntryDuongGiaoNhau_OnTextChanged"/>
+                <Label x:Name="LabelDuongGiaoNhau"
+                       FontSize="11"/>
+
+                <Entry x:Name="EntryQuanDiQua"
+                       FontSize="12"
+                       Placeholder="Nhập tên đường"
+                       TextChanged="EntryQuanDiQua_OnTextChanged"/>
+                <Label x:Name="LabelQuanDiQua"
+                       FontSize="11"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
