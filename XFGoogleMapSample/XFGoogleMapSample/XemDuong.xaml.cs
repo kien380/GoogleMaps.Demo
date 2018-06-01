@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
@@ -54,7 +53,8 @@ namespace XFGoogleMapSample
 	                    _listDiem = Diem.DeserializeList(result);
 
                         VeDuong();
-	                });
+	                    TinhChieuDaiDuong();
+                    });
 	            }
 	            else
 	            {
@@ -127,6 +127,25 @@ namespace XFGoogleMapSample
 	            });
 	        }
         }
+
+	    private void TinhChieuDaiDuong()
+	    {
+	        double tongChieuDaiDuong = 0d;
+
+	        for (int i = 0; i < _listDiem.Count - 1; i++)
+	        {
+	            tongChieuDaiDuong += Diem.DistanceInKilometer(
+                    double.Parse(_listDiem[i].X),
+                    double.Parse(_listDiem[i].Y),
+	                double.Parse(_listDiem[i + 1].X), 
+                    double.Parse(_listDiem[i + 1].Y));
+	        }
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                LabelChieuDaiDuong.Text = "Chiều dài con đường: " + Math.Round(tongChieuDaiDuong, 2) + " km";
+            });
+	    }
 
 	    private async void ButtonXemDuongGiaoNhau_OnClicked(object sender, EventArgs e)
 	    {

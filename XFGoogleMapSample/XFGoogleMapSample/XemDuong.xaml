@@ -23,8 +23,9 @@
 
             <googleMaps:Map x:Name="map" 
                       VerticalOptions="FillAndExpand"/>
-            
-            <StackLayout Spacing="0">
+
+            <StackLayout Spacing="0"
+                         Padding="15,0">
                 <Label Text="Chiều dài con đường"
                        FontSize="11"
                        x:Name="LabelChieuDaiDuong"/>
