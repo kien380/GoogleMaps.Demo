@@ -119,7 +119,7 @@ namespace XFGoogleMapSample.Services
 
         public string GetDuongNamTrongQuan(string msQuan, string msDuong)
         {
-            return $"{_host}street/quan/{msQuan}/{msDuong}";
+            return $"{_host}street/quan/{msDuong}/{msQuan}";
         }
 
         public string GetDuongDiQuaQuan(string msDuong)
